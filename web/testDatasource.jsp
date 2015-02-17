@@ -8,6 +8,8 @@
             select * from customer
         </sql:query>
             
+            <!-- testets -->
+            
         <table border="1">
             <!-- column headers -->
             <tr>
