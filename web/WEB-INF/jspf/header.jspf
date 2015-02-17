@@ -40,52 +40,15 @@
             });
         </script>
 
-        <title>The Affable Bean Green Grocer</title>
+        <title>Your Bar Mate</title>
     </head>
     <body>
         <div id="main">
             <div id="header">
                 <div id="widgetBar">
 
-                    <div class="headerWidget">
-                        [ language toggle ]
-                    </div>
-
                 <%-- checkout widget --%>
-                    <div class="headerWidget">
-
-                       <%-- tests for the following:
-                            * if cart exists and is not empty
-                            * if the servlet path does not contain '/checkout'
-                            * if the requested view is not checkout
-                            * if the servlet path does not contain '/cart'
-                            * if the requested view is not cart
-                            * if the checkout view is returned with order failure message flagged
-                            * if the checkout view is returned with server-side validation errors detected
-
-                            <c:if test="${!empty sessionScope.cart}">
-                                CART EXISTS AND IS NOT NULL
-                            </c:if>
-                                <BR>
-                            <c:if test="${sessionScope.cart.numberOfItems != 0}">
-                                NUMBER OF ITEMS IN CART IS NOT 0
-                            </c:if>
-                                <BR>
-                            <c:if test="${fn:contains(pageContext.request.servletPath,'/checkout')}">
-                                SERVLET PATH CONTAINS '/checkout'
-                            </c:if>
-                                <BR>
-                            <c:if test="${requestScope['javax.servlet.forward.servlet_path'] ne '/checkout'}">
-                                REQUEST IS NOT CHECKOUT
-                            </c:if>
-                                <BR>
-                            <c:if test="${requestScope.validationErrorFlag ne true}">
-                                VALIDATION ERROR IS NOT FLAGGED
-                            </c:if>
-                                <BR>
-                            <c:if test="${requestScope.orderFailureFlag ne true}">
-                                ORDER FAILURE ERROR IS NOT FLAGGED
-                            </c:if> --%>
+                    <div class="headerWidget">                 
 
                         <c:if test="${!empty cart && cart.numberOfItems != 0 &&
 
@@ -143,10 +106,4 @@
                     </c:if>
                 </div>
                 </div>
-
-                <a href="<c:url value='/'/>">
-                    <img src="img/logo.png" id="logo" alt="Affable Bean logo">
-                </a>
-
-                <img src="img/logoText.png" id="logoText" alt="the affable bean">
             </div>
