@@ -48,8 +48,7 @@
                 <div id="widgetBar">        
                 <%-- logout widget --%>
                 <div class="headerWidget">
-                    <c:if test="${!fn:contains(pageContext.request.servletContext,'/login') &&
-                                    requestScope['javax.servlet.forward.servlet_path'] ne '/login'}">
+                    <c:if test="${userStatus == 1}">
                         <a href="<c:url value='logout'/>" class="bubble">Logout &#x279f;</a>
                     </c:if>
                 </div>
@@ -58,7 +57,7 @@
 
                         <c:if test="${!empty cart && cart.numberOfItems != 0 &&
 
-                                      !fn:contains(pageContext.request.servletPath,'/checkout') &&
+                                      !fn:contains(pageContext.request.servletContext,'/checkout') &&
                                       requestScope['javax.servlet.forward.servlet_path'] ne '/checkout' &&
 
                                       !fn:contains(pageContext.request.servletPath,'/cart') &&

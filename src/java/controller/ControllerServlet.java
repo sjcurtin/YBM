@@ -123,7 +123,7 @@ public class ControllerServlet extends HttpServlet {
         } else if (userPath.equals("/checkout")) {
 
             ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-
+            session.setAttribute("userStatus", "1");
             // calculate total
             cart.calculateTotal(surcharge);
             
@@ -144,6 +144,7 @@ public class ControllerServlet extends HttpServlet {
         }
         
          else if (userPath.equals("/logout")) {
+            session.setAttribute("userStatus", "0");
             session = request.getSession();
             session.invalidate();             
             userPath = "/logout";
@@ -151,6 +152,8 @@ public class ControllerServlet extends HttpServlet {
         }
         
            else if (userPath.equals("/login")) {
+            
+            session.setAttribute("userStatus", "1");
             userPath = "/login";
 
         }
