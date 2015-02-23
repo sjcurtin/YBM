@@ -42,7 +42,7 @@ public class CustomerFacade extends AbstractFacade<Customer> {
         customer.setAddress(address);
         customer.setPassword(password);
      
-        user.addUser("customer", email);
+        user.addUser("shane", email);
         
         em.persist(customer);
         
