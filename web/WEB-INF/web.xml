@@ -46,7 +46,7 @@
     <security-constraint>
         <display-name>Customer</display-name>
         <web-resource-collection>
-            <web-resource-name>YBM Admisistration</web-resource-name>
+            <web-resource-name>Customer</web-resource-name>
             <description/>
             <url-pattern>/admin/*</url-pattern>
         </web-resource-collection>
@@ -63,10 +63,6 @@
             <form-error-page>/admin/error.jsp</form-error-page>
         </form-login-config>
     </login-config>
-    <security-role>
-        <description>What customers can access</description>
-        <role-name>customer</role-name>
-    </security-role>
     <security-role>
         <description/>
         <role-name>shane</role-name>
