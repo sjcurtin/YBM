@@ -6,7 +6,7 @@
     <div id="welcomeText">
         <p>[ welcome text ]</p>
     </div>
-</div>
+</div> 
 
 <div id="indexRightColumn">
     

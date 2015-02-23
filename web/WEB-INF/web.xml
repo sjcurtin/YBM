@@ -48,7 +48,7 @@
         <web-resource-collection>
             <web-resource-name>YBM Admisistration</web-resource-name>
             <description/>
-            <url-pattern>/checkout/*</url-pattern>
+            <url-pattern>/admin/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <description/>
