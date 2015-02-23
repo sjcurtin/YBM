@@ -14,4 +14,5 @@
         <input type="text" name="address"><br>
         <input type="submit" value="register">
     </form>    
+        
 </div>

@@ -45,8 +45,14 @@
     <body>
         <div id="main">
             <div id="header">
-                <div id="widgetBar">
-
+                <div id="widgetBar">        
+                <%-- logout widget --%>
+                <div class="headerWidget">
+                    <c:if test="${!fn:contains(pageContext.request.servletContext,'/login') &&
+                                    requestScope['javax.servlet.forward.servlet_path'] ne '/login'}">
+                        <a href="<c:url value='logout'/>" class="bubble">Logout &#x279f;</a>
+                    </c:if>
+                </div>
                 <%-- checkout widget --%>
                     <div class="headerWidget">                 
 

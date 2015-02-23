@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -103,7 +102,7 @@ public class AdminServlet extends HttpServlet {
         if (userPath.equals("/admin/logout")) {
             session = request.getSession();
             session.invalidate();   // terminate session
-            response.sendRedirect("/YBMProject/admin/");
+            response.sendRedirect("/YBM/admin");
             return;
         }
 

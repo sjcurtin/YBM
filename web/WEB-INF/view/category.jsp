@@ -40,7 +40,7 @@
 
             <tr>
                 <td>
-                    <img src="${initParam.productImagePath}${product.name}.png"
+                    <img src="${initParam.productImagePath}${product.name}.jpg"
                          alt="${product.name}">
                 </td>
                 <td>

@@ -41,7 +41,9 @@ import validate.Validator;
                            "/purchase",
                            "/chooseLanguage",
                            "/register",
-                           "/registered"})
+                           "/registered",
+                           "/logout",
+                           "/login"})
 public class ControllerServlet extends HttpServlet {
              
     private String surcharge = "5.0";
@@ -141,6 +143,20 @@ public class ControllerServlet extends HttpServlet {
 
         }
         
+         else if (userPath.equals("/logout")) {
+            session = request.getSession();
+            session.invalidate();             
+            userPath = "/logout";
+
+        }
+        
+           else if (userPath.equals("/login")) {
+            userPath = "/login";
+
+        }
+        
+        
+        
 
         // use RequestDispatcher to forward request internally
         String url = "/WEB-INF/view" + userPath + ".jsp";
@@ -207,12 +223,13 @@ public class ControllerServlet extends HttpServlet {
             PasswordEncrypt p = new PasswordEncrypt();
             
             String password = p.encrypt(request.getParameter("password"));
-            
+              
             int added = customerFacade.addCustomer(name, email, pnumber, address, password);
-            
-            if(added == 1){
-                userPath = "/cart";
-            }
+            request.setAttribute("name", name);
+            request.setAttribute("address", address);
+            request.setAttribute("email", email);
+            request.setAttribute("phone", pnumber);
+                       
         }
         // if updateCart action is called
         else if (userPath.equals("/updateCart")) {
