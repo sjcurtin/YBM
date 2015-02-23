@@ -7,6 +7,7 @@ package controller;
 
 import cart.ShoppingCart;
 import entity.Category;
+import entity.Customer;
 import entity.PasswordEncrypt;
 import entity.Product;
 import java.io.IOException;
@@ -126,8 +127,8 @@ public class ControllerServlet extends HttpServlet {
             session.setAttribute("userStatus", "1");
             // calculate total
             cart.calculateTotal(surcharge);
-            
             session.setAttribute("deliverySurcharge", surcharge);
+                                    
             
             // forward to checkout page and switch to a secure channel
 
@@ -150,14 +151,7 @@ public class ControllerServlet extends HttpServlet {
             userPath = "/logout";
 
         }
-        
-           else if (userPath.equals("/login")) {
-            
-            session.setAttribute("userStatus", "1");
-            userPath = "/login";
-
-        }
-        
+             
         
         
 
@@ -228,6 +222,7 @@ public class ControllerServlet extends HttpServlet {
             String password = p.encrypt(request.getParameter("password"));
               
             int added = customerFacade.addCustomer(name, email, pnumber, address, password);
+            
             request.setAttribute("name", name);
             request.setAttribute("address", address);
             request.setAttribute("email", email);
@@ -256,7 +251,7 @@ public class ControllerServlet extends HttpServlet {
         } else if (userPath.equals("/purchase")) {
 
             if (cart != null) {
-
+                
                 // extract user data from request
                 String name = request.getParameter("name");
                 String email = request.getParameter("email");
@@ -309,7 +304,14 @@ public class ControllerServlet extends HttpServlet {
                 }
             }
         }
+           else if (userPath.equals("/login")) {
+               
+            session.setAttribute("userStatus", "1");
+            session.setAttribute("userEmail", request.getAttribute("j_username"));
+            userPath = "/login";
 
+        }
+        
         // use RequestDispatcher to forward request internally
         String url = "/WEB-INF/view" + userPath + ".jsp";
 

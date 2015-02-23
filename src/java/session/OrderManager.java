@@ -116,7 +116,7 @@ public class OrderManager {
 
         // get order
         CustomerOrder order = customerOrderFacade.find(orderId);
-
+        
         // get customer
         Customer customer = order.getCustomer();
 
