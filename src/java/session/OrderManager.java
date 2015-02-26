@@ -41,10 +41,9 @@ public class OrderManager {
     private OrderedProductFacade orderedProductFacade;
     
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public int placeOrder(String name, String email, String phone, String address, String cityRegion, String ccNumber, ShoppingCart cart) {
+    public int placeOrder(Customer customer, ShoppingCart cart) {
         
         try{
-        Customer customer = addCustomer(name, email, phone, address, cityRegion, ccNumber);
         CustomerOrder order = addOrder(customer, cart);
         addOrderedItems(order, cart);
         
@@ -56,18 +55,6 @@ public class OrderManager {
         }//end catch
 
     }//end placeOrder
-
-    private Customer addCustomer(String name, String email, String phone, String address, String cityRegion, String ccNumber) {
-    
-        Customer customer = new Customer();
-        customer.setName(name);
-        customer.setEmail(email);
-        customer.setPhone(phone);
-        customer.setAddress(address);
-
-        em.persist(customer);
-        return customer;
-    }
 
     private CustomerOrder addOrder(Customer customer, ShoppingCart cart) {
         // set up customer order

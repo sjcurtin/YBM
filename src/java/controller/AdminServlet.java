@@ -3,6 +3,7 @@ package controller;
  
 import entity.Customer;
 import entity.CustomerOrder;
+import entity.PasswordEncrypt;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +23,11 @@ import session.OrderManager;
                            "/admin/viewCustomers",
                            "/admin/customerRecord",
                            "/admin/orderRecord",
+                           "/admin/register",
+                           "/admin/registered",
                            "/admin/logout"})
 
 
-//@RolesAllowed("admin")
 public class AdminServlet extends HttpServlet {
 
     @EJB
@@ -138,7 +140,40 @@ public class AdminServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+       
+        if (userPath.equals("/admin/registered")) {
+            String name = request.getParameter("name");
+            String email = request.getParameter("email");
+            String pnumber = request.getParameter("pnumber");
+            String address = request.getParameter("address");
+
+            PasswordEncrypt p = new PasswordEncrypt();
+
+            String password = p.encrypt(request.getParameter("password"));
+
+            int added = customerFacade.addAdmin(name, email, pnumber, address, password);
+
+            request.setAttribute("name", name);
+            request.setAttribute("address", address);
+            request.setAttribute("email", email);
+            request.setAttribute("phone", pnumber);
+
+        } 
+        
+        else if(userPath.equals("/admin/register")){
+            userPath = "/register";
+        }
+        
+       // use RequestDispatcher to forward request internally
+        String url = "/admin" + userPath + ".jsp";
+       try {
+            request.getRequestDispatcher(url).forward(request, response);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
         processRequest(request, response);
+        
     }
 
 }

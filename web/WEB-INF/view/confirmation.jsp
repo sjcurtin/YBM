@@ -1,9 +1,3 @@
-<%--
-    Document   : confirmation
-    Created on : Sep 9, 2009, 12:20:30 AM
-    Author     : tgiunipero
---%>
-
 
 <div id="singleColumn">
 
@@ -74,7 +68,7 @@
                     <br>
                     ${customer.address}
                     <br>
-                    Prague ${customer.cityRegion}
+                    Prague 
                     <br>
                     <hr>
                     <strong>email:</strong> ${customer.email}

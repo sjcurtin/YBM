@@ -50,4 +50,21 @@ public class CustomerFacade extends AbstractFacade<Customer> {
         
     }//end addCustomer
     
+        public int addAdmin(String name, String email, String phone, String address, String password) {
+    
+        Customer customer = new Customer();
+        customer.setName(name);
+        customer.setEmail(email);
+        customer.setPhone(phone);
+        customer.setAddress(address);
+        customer.setPassword(password);
+     
+        user.addUser("admin", email);
+        
+        em.persist(customer);
+        
+        return 1;
+        
+    }//end addCustomer
+    
  }
