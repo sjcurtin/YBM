@@ -45,7 +45,7 @@ import validate.Validator;
             "/login"})
 public class ControllerServlet extends HttpServlet {
 
-    private String surcharge = "5.0";
+    private String surcharge;
 
     @EJB
     private CustomerFacade customerFacade;
@@ -63,6 +63,9 @@ public class ControllerServlet extends HttpServlet {
 
         // store category list in servlet context
         getServletContext().setAttribute("categories", categoryFacade.findAll());
+        
+        surcharge = servletConfig.getServletContext().getInitParameter("deliverySurcharge");
+        
 
     }
 
@@ -124,7 +127,7 @@ public class ControllerServlet extends HttpServlet {
             ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
             // calculate total
             cart.calculateTotal(surcharge);
-            session.setAttribute("deliverySurcharge", surcharge);
+            
             session.setAttribute("userStatus", "1");
             session.setAttribute("userEmail", request.getRemoteUser());
 
@@ -245,7 +248,7 @@ public class ControllerServlet extends HttpServlet {
                 int orderId = orderManager.placeOrder(customer, cart);
 
                 if (orderId != 0) {
-                    cart = null;
+                    cart.clear();
 
                     // get order details
                     Map orderMap = orderManager.getOrderDetails(orderId);

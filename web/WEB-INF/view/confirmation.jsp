@@ -1,6 +1,6 @@
 
 <div id="singleColumn">
-
+    <h1>Your Order is Confirmed</h1>
     <p id="confirmationText">
         <strong>Your order has been successfully processed and will be delivered within 24 hours.</strong>
         <br><br>
@@ -9,7 +9,7 @@
         <br>
         If you have a query concerning your order, feel free to <a href="#">contact us</a>.
         <br><br>
-        Thank you for shopping at the Affable Bean Green Grocer!
+        Thank you for shopping at YourBarMate.com!
     </p>
 
     <div class="summaryColumn" >
@@ -43,7 +43,7 @@
 
             <tr class="lightBlue">
                 <td colspan="2" id="deliverySurchargeCellLeft"><strong>delivery surcharge:</strong></td>
-                <td id="deliverySurchargeCellRight">&euro; ${deliverySurcharge}</td>
+                <td id="deliverySurchargeCellRight">&euro; ${initParam.deliverySurcharge}</td>
             </tr>
 
             <tr class="lightBlue">
@@ -67,8 +67,6 @@
                     ${customer.name}
                     <br>
                     ${customer.address}
-                    <br>
-                    Prague 
                     <br>
                     <hr>
                     <strong>email:</strong> ${customer.email}

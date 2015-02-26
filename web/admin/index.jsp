@@ -112,14 +112,6 @@
             <td><strong>address:</strong></td>
             <td>${customerRecord.address}</td>
         </tr>
-        <tr>
-            <td><strong>city region:</strong></td>
-            <td>${customerRecord.cityRegion}</td>
-        </tr>
-        <tr>
-            <td><strong>credit card number:</strong></td>
-            <td>${customerRecord.ccNumber}</td>
-        </tr>
 
         <tr><td colspan="2" style="padding: 0 20px"><hr></td></tr>
 

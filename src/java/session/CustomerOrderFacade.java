@@ -6,7 +6,6 @@
 package session;
 
 import entity.CustomerOrder;
-import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

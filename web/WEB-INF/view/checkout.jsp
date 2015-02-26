@@ -51,7 +51,7 @@
 
         <ul>
             <li>Next-day delivery is guaranteed</li>
-            <li>A &euro; ${deliverySurcharge}
+            <li>A &euro; ${initParam.deliverySurcharge}
                 delivery surcharge is applied to all purchase orders</li>
         </ul>
 
@@ -64,7 +64,7 @@
             <tr>
                 <td>delivery surcharge:</td>
                 <td class="checkoutPriceColumn">
-                    &euro; ${deliverySurcharge}</td>
+                    &euro; ${initParam.deliverySurcharge}</td>
             </tr>
             <tr>
                 <td class="total">total:</td>

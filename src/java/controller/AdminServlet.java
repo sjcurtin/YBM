@@ -1,6 +1,7 @@
 
+
 package controller;
- 
+
 import entity.Customer;
 import entity.CustomerOrder;
 import entity.PasswordEncrypt;
@@ -10,6 +11,9 @@ import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.HttpConstraint;
+import javax.servlet.annotation.ServletSecurity;
+import javax.servlet.annotation.ServletSecurity.TransportGuarantee;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import javax.servlet.http.HttpSession;
@@ -22,12 +26,14 @@ import session.OrderManager;
                            "/admin/viewOrders",
                            "/admin/viewCustomers",
                            "/admin/customerRecord",
-                           "/admin/orderRecord",
                            "/admin/register",
                            "/admin/registered",
+                           "/admin/orderRecord",
                            "/admin/logout"})
 
-
+@ServletSecurity(
+    @HttpConstraint(rolesAllowed = {"admin"})
+)
 public class AdminServlet extends HttpServlet {
 
     @EJB
@@ -61,6 +67,7 @@ public class AdminServlet extends HttpServlet {
         if (userPath.equals("/admin/viewCustomers")) {
             customerList = customerFacade.findAll();
             request.setAttribute("customerList", customerList);
+            
         }
 
         // if viewOrders is requested
@@ -72,7 +79,7 @@ public class AdminServlet extends HttpServlet {
         // if customerRecord is requested
         if (userPath.equals("/admin/customerRecord")) {
 
-            // get customer id from request
+            // get customer ID from request
             String customerId = request.getQueryString();
 
             // get customer details
@@ -87,7 +94,7 @@ public class AdminServlet extends HttpServlet {
         // if orderRecord is requested
         if (userPath.equals("/admin/orderRecord")) {
 
-            // get customer id from request
+            // get customer ID from request
             String orderId = request.getQueryString();
 
             // get order details
@@ -100,14 +107,37 @@ public class AdminServlet extends HttpServlet {
             request.setAttribute("orderedProducts", orderMap.get("orderedProducts"));
         }
 
+        if (userPath.equals("/admin/registered")) {
+            String name = request.getParameter("name");
+            String email = request.getParameter("email");
+            String pnumber = request.getParameter("pnumber");
+            String address = request.getParameter("address");
+
+            PasswordEncrypt p = new PasswordEncrypt();
+
+            String password = p.encrypt(request.getParameter("password"));
+
+            int added = customerFacade.addAdmin(name, email, pnumber, address, password);
+
+            request.setAttribute("name", name);
+            request.setAttribute("address", address);
+            request.setAttribute("email", email);
+            request.setAttribute("phone", pnumber);
+
+        } 
+
         // if logout is requested
         if (userPath.equals("/admin/logout")) {
             session = request.getSession();
             session.invalidate();   // terminate session
-            response.sendRedirect("/YBM/admin");
+            response.sendRedirect("/YBM/");
             return;
         }
-
+        
+        if(userPath.equals("/admin/")) {
+             session.setAttribute("userStatus", "1");
+        }
+       
         // use RequestDispatcher to forward request internally
         userPath = "/admin/index.jsp";
         try {
@@ -140,40 +170,7 @@ public class AdminServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-        if (userPath.equals("/admin/registered")) {
-            String name = request.getParameter("name");
-            String email = request.getParameter("email");
-            String pnumber = request.getParameter("pnumber");
-            String address = request.getParameter("address");
-
-            PasswordEncrypt p = new PasswordEncrypt();
-
-            String password = p.encrypt(request.getParameter("password"));
-
-            int added = customerFacade.addAdmin(name, email, pnumber, address, password);
-
-            request.setAttribute("name", name);
-            request.setAttribute("address", address);
-            request.setAttribute("email", email);
-            request.setAttribute("phone", pnumber);
-
-        } 
-        
-        else if(userPath.equals("/admin/register")){
-            userPath = "/register";
-        }
-        
-       // use RequestDispatcher to forward request internally
-        String url = "/admin" + userPath + ".jsp";
-       try {
-            request.getRequestDispatcher(url).forward(request, response);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        
         processRequest(request, response);
-        
     }
 
 }

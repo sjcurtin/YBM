@@ -59,6 +59,9 @@
 
                                       !fn:contains(pageContext.request.servletContext,'/checkout') &&
                                       requestScope['javax.servlet.forward.servlet_path'] ne '/checkout' &&
+                                      
+                                      !fn:contains(pageContext.request.servletContext,'/purchase') &&
+                                      requestScope['javax.servlet.forward.servlet_path'] ne '/purchase' &&
 
                                       !fn:contains(pageContext.request.servletPath,'/cart') &&
                                       requestScope['javax.servlet.forward.servlet_path'] ne '/cart' &&

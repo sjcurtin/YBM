@@ -162,8 +162,8 @@ public class ShoppingCart {
       
         amount = this.getSubtotal();
         amount += s;
-
-        total = amount;
+        double roundOff = (double) Math.round(amount * 100) / 100;
+        total = roundOff;
     }
 
     /**
