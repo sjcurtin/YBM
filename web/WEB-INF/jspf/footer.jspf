@@ -1,10 +1,25 @@
 <div id="footer">
                 <hr>
-                <p id="footerText">[ footer footer text ]</p>
+               
             </div>
 
+<div id="share-buttons">
+ 
+<!-- Facebook -->
+<a href="https://www.facebook.com/YourBarMate" target="_blank"><img src="http://www.simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" /></a>
+ 
+<!-- Twitter -->
+<a href="https://twitter.com/YourBarMate" target="_blank"><img src="http://www.simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" /></a>
+ 
+<!-- Email -->
+<a href="mailto:yourbarmate@gmail.com&Subject=Your Bar Mate enquiry><img src="http://www.simplesharebuttons.com/images/somacro/email.png" alt="Email" /></a>
+ 
+</div>
+       
         </div>
         
+       
+ 
     </body>
     
 </html>

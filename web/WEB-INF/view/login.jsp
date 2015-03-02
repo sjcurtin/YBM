@@ -6,11 +6,14 @@
     
 </script>
 
-<h1> Login to YBM! </h1>
+<style>
+  h1   {color:white}
+  h1   {font-family: "Fantasy", Papyrus}
+  p   {font-family: "Fantasy", Papyrus}
+  p     {color:white}
+</style>
 
-
-
-
+<h1>Customer Login </h1>
 
 <form action="j_security_check" method=post>
     <div id="loginBox">
@@ -20,7 +23,7 @@
         <p><strong>Password:</strong>
             <input type="password" size="20" name="j_password"></p>
 
-        <p><input type="submit" value="Login"></p>
+        <p><input type="submit" value="submit"></p>
     </div>
 </form>
 

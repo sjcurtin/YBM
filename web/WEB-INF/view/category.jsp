@@ -4,8 +4,9 @@
 
 
 <div id="categoryLeftColumn">
-
+    
     <c:forEach var="category" items="${categories}">
+        
         <c:choose>
             <c:when test="${category.id == pageContext.request.queryString}">
                 <div class="categoryButton" id="selectedCategory">
@@ -25,33 +26,22 @@
 
     </c:forEach>
 
+
 </div>
 
 
 
 <div id="categoryRightColumn">
-    
-   <p id="categoryTitle">
-    <span style="background-color: #f5eabe; padding: 7px;">${selectedCategory.name}</span>
-</p>
-
-    <table id="productTable">
+  
         <c:forEach var="product" items="${categoryProducts}">
-
-            <tr>
-                <td>
-                    <img src="${initParam.productImagePath}${product.name}.jpg"
-                         alt="${product.name}">
-                </td>
-                <td>
-                    ${product.name}
+            <div class="ProductBox">
+            <img src="${initParam.productImagePath}${product.name}.png" alt="${product.name}">
+                    <br>
+                     ${product.name}
                     <br>
                     <span class="smallText">${product.description}</span>
-                </td>
-                <td>
+                    <br>
                     &euro; ${product.price} / unit
-                </td>
-                <td>
                     <form action="addToCart" method="post">
                         <input type="hidden"
                                name="productId"
@@ -59,9 +49,7 @@
                         <input type="submit"
                                value="add to cart">
                     </form>
-                </td>
-            </tr>
-
+                
+                        </div>
         </c:forEach>
-    </table>
 </div>

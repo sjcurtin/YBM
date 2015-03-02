@@ -1,7 +1,7 @@
 <div id="singleColumn">
     <h2> Register a new Administrator </h2>
     
-    <form action="<c:url value='admin/registered'/>" method="post">
+    <form action="<c:url value='/admin/registered'/>" method="post">
         Name:<br>
         <input type="text" name="name"><br>
         Email:<br>
